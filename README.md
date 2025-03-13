@@ -1,12 +1,47 @@
-# React + Vite
+# Product Listing Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+The `ProductListing` component is a React-based product listing page that supports **search, filtering, and sorting** functionalities. It fetches product data from the [Fake Store API](https://fakestoreapi.com/) and allows users to:
+- Search for products by name
+- Filter products by category
+- Sort products by price
+- View product images, names, prices, and categories
 
-Currently, two official plugins are available:
+## Features
+- **Fetching Data**: Uses `axios` to retrieve products from an external API.
+- **Custom Hooks**:
+  - `useSearch()`: Handles product search functionality.
+  - `useFilter()`: Manages category-based filtering.
+  - `useSort()`: Handles sorting logic for products.
+- **Sorting**: Supports ascending and descending sorting of product prices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Code Explanation
+### State Management
+- `products`: Stores all fetched products.
+- `filteredProducts`: Stores the products after applying search and filters.
+- `loading`: Tracks API fetch status.
+- `search`: Search query state from `useSearch`.
+- `selectedCategory`: Stores selected category from `useFilter`.
 
-## Expanding the ESLint configuration
+### API Data Fetching
+- Products are fetched inside a `useEffect` hook using `axios.get()`.
+- The fetched data is stored in `products` and `filteredProducts`.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Search Functionality
+- Uses `useSearch()` to manage the `search` state.
+- Filters products based on the `title` field.
+
+### Filtering by Category
+- Uses `useFilter()` to manage categories.
+- Filters `products` based on the selected category.
+
+### Sorting
+- Uses `useSort()` to enable sorting by price.
+- Clicking the price column toggles sorting order (`asc` or `desc`).
+
+## Dependencies
+- `react`
+- `axios`
+- `react-icons`
+- `tailwindcss` (optional, for styling)
+
